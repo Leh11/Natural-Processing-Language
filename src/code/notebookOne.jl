@@ -50,6 +50,42 @@ begin
 	end
 end
 
+# ╔═╡ d58ca052-4056-48a1-827e-b3cf24b92d44
+#Questão - 3
+let
+	function match_url(str::String)
+		pattern = r"^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$"
+		#print(pattern)
+		println(match(pattern, str))
+	end
+	urls = ["http://www.ufal.com.br"]
+	for str ∈ urls
+		match_url(str)
+	end
+end
+
+# ╔═╡ 3c0c27c9-545a-4103-84e2-68003742b5ab
+#Questão - 5
+let
+	function match_url(str::String)
+		pattern = r"(?<dd>\d+)/(?<mm>\d+)/(?<yyyy>\d+)"
+		# print(pattern)
+		str = replace(str, r"(?<dd>\d+)(/)(?<mm>\d+)(/)(?<yyyy>\d+)" => s"\g<mm>-\g<dd>-\g<yyyy>")
+
+		return str
+	end
+	urls = ["09/09/2022", "20/01/1973"]
+	for str ∈ urls
+		println("R: $(match_url(str))")
+	end
+end
+
+# ╔═╡ 91b01372-a11a-43d7-83e9-774172b5f356
+begin
+	#replace("first second", r"(\w+) (?<a>\w+)" => s"\g<a> \1")
+	replace("09/05/2022", r"(?<dd>\d+)(/)(?<mm>\d+)(/)(?<yyyy>\d+)" => s"\g<mm>-\1-\g<yyyy>")
+end
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -69,5 +105,8 @@ project_hash = "da39a3ee5e6b4b0d3255bfef95601890afd80709"
 # ╔═╡ Cell order:
 # ╠═f0524004-2fa5-11ed-3d41-377983b12e3b
 # ╠═ccec0bb7-0725-4205-8bf0-1d40b37e3f19
+# ╠═d58ca052-4056-48a1-827e-b3cf24b92d44
+# ╠═3c0c27c9-545a-4103-84e2-68003742b5ab
+# ╠═91b01372-a11a-43d7-83e9-774172b5f356
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
